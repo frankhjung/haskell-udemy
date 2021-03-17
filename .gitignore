@@ -1,0 +1,11 @@
+*.dyn_hi
+*.dyn_o
+*.hi
+.idea
+*.iml
+*.lock
+*.o
+.stack-work
+stack.yaml.lock
+.*.swp
+*.tix

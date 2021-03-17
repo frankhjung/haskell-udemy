@@ -1,0 +1,36 @@
+---
+
+name: haskell udemy
+
+on:
+  push:
+    branches:
+      - master
+      - 'feature/**'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    env:
+      RTSOPTS: +RTS -N1
+
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@v1.0.0
+        with:
+          fetch-depth: 1
+
+      - name: stack
+        run: stack setup
+
+      - name: build
+        run: stack build
+
+      - name: exec
+        run: |
+          ./gendata.sh > test.data
+          stack exec -- chapter8 $RTSOPTS -s
